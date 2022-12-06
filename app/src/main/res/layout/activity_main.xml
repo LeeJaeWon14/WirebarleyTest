@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.jeepchief.wirebarleytest.MainActivity.ViewModel" />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/tv_main_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_label"
+            android:textSize="50sp"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_label_remittance"
+            android:layout_below="@+id/tv_main_label"
+            android:text="@string/label_remittance"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_remittance"
+            android:text="@string/label_usd"
+            android:layout_toEndOf="@+id/tv_label_remittance"
+            android:layout_below="@+id/tv_main_label"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_label_reception"
+            android:text="@string/label_reception"
+            android:layout_below="@id/tv_label_remittance"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_reception"
+            tools:text="한국(KRW)"
+            android:layout_below="@+id/tv_remittance"
+            android:layout_toEndOf="@id/tv_label_reception"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_label_exchange_rate"
+            android:text="@string/label_exchange_rate"
+            android:layout_below="@id/tv_label_reception"
+            android:layout_marginBottom="10dp"
+            android:layout_toStartOf="@+id/tv_reception"/>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_exchange_rate"
+            tools:text = "1130.05 KRW"
+            android:layout_below="@id/tv_reception"
+            android:layout_toEndOf="@id/tv_label_exchange_rate"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_label_amound_usd"
+            android:text=" / USD"
+            android:layout_below="@id/tv_reception"
+            android:layout_toEndOf="@+id/tv_exchange_rate" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_label_search_time"
+            android:text="@string/label_search_time"
+            android:layout_below="@+id/tv_label_exchange_rate"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_search_time"
+            tools:text="조회시간"
+            android:layout_below="@id/tv_exchange_rate"
+            android:layout_toEndOf="@id/tv_label_search_time"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_label_amount"
+            android:text="@string/label_amount"
+            android:layout_below="@+id/tv_label_search_time"
+            android:layout_toStartOf="@id/tv_search_time"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edt_input_amount"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/tv_search_time"
+            android:layout_toEndOf="@id/tv_label_amount"
+            android:text="@={viewModel.textField}"
+            android:inputType="number"
+            android:onTextChanged="@{viewModel::onTextChanged}"
+            android:background="@drawable/amount_box"
+            android:textDirection="rtl"/>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/tv_usd"
+            android:text = " USD"
+            android:layout_toEndOf="@id/edt_input_amount"
+            android:layout_below="@id/tv_search_time" />
+
+        <FrameLayout
+            android:id="@+id/ll_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_usd"
+            android:layout_marginTop="150dp">
+            <TextView
+                style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:id="@+id/tv_result"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                tools:text = "수취금액은 %s %s 입니다." />
+
+            <TextView
+                style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:id="@+id/tv_message"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="@string/message"
+                android:textColor="@color/red"
+                android:visibility="invisible" />
+        </FrameLayout>
+
+        <Spinner
+            android:id="@+id/sp_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_message"
+            android:layout_marginTop="30dp" />
+    </RelativeLayout>
+</layout>
