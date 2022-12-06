@@ -1,15 +1,15 @@
-package com.jeepchief.wirebarleytest
+package com.jeepchief.wirebarleytest.view
 
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
+import com.jeepchief.wirebarleytest.R
 import com.jeepchief.wirebarleytest.databinding.ActivityMainBinding
 import com.jeepchief.wirebarleytest.model.LiveDTO
 import com.jeepchief.wirebarleytest.viewmodel.MainViewModel
